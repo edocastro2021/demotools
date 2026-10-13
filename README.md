@@ -27,8 +27,32 @@ The repository may include resources related to:
 - **SQL:** Data engineering patterns, query optimization, and database operations.
 - **Power BI:** Semantic models, performance considerations, and analytical solutions.
 
+## Repository Structure
 
-The directory structure will evolve as new utilities and examples are added.
+Suggested organization as the repository grows:
+
+```text
+data-engineering-tools/
+├── microsoft-fabric/
+│   ├── administration/
+│   │   └── Fabric_Workspace_Recycle_Bin_Cleaner.ipynb
+│   ├── performance/
+│   │   └── fabric-delta-small-file-inspector/
+│   │       ├── Fabric_Delta_Small_File_Inspector.ipynb
+│   │       └── README.md
+│   ├── capacity-monitoring/
+│   ├── data-engineering/
+│   └── automation/
+├── azure/
+├── python/
+├── pyspark/
+├── sql/
+├── power-bi/
+├── examples/
+└── README.md
+```
+
+The directory structure will evolve as new utilities and examples are added. Update the paths below if you choose a different folder structure.
 
 ## Available Tools
 
@@ -36,7 +60,25 @@ The directory structure will evolve as new utilities and examples are added.
 
 | Tool | Description | Technology |
 |---|---|---|
-| Fabric Workspace Recycle Bin Cleaner | Inspect and permanently delete eligible items from a Microsoft Fabric Workspace recycle bin using REST APIs, with safeguards and dry-run support. | Python, Fabric REST API |
+| [Fabric Workspace Recycle Bin Cleaner](microsoft-fabric/administration/Fabric_Workspace_Recycle_Bin_Cleaner.ipynb) | Inspect and permanently delete eligible items from a Microsoft Fabric Workspace recycle bin using REST APIs, with safeguards and dry-run support. | Python, Fabric REST API |
+| [Fabric Delta Small File Inspector](microsoft-fabric/performance/fabric-delta-small-file-inspector/Fabric_Delta_Small_File_Inspector.ipynb) | Inspect Delta tables in an attached Fabric Lakehouse, report file counts and average file sizes, flag potential small-file issues using configurable thresholds, and optionally examine active file sizes. Read-only by default. | PySpark, Delta Lake, Microsoft Fabric |
+
+### Fabric Delta Small File Inspector
+
+Small-file proliferation can increase metadata overhead and reduce scan efficiency, but **file count alone is not proof of a performance issue**. This utility helps prioritize investigation by reporting file statistics without automatically running `OPTIMIZE`, `VACUUM`, or other table-changing operations.
+
+**Capabilities:**
+
+- Discover and inspect Delta tables in a selected Lakehouse database.
+- Report approximate table size, file count, and average file size using Delta metadata.
+- Highlight tables that meet user-configurable screening thresholds.
+- Optionally perform a deeper, potentially expensive inspection of active file sizes.
+- Produce a summary of candidates for further investigation.
+
+**Quick start:** Import the notebook into Microsoft Fabric, attach the target Lakehouse, review the configuration cell, and run the metadata-only scan first. Enable deeper inspection only when needed. Review query performance, partitioning, ingestion patterns, and Fabric's automatic optimization behavior before deciding on table maintenance.
+
+**Notebook:** [`Fabric_Delta_Small_File_Inspector.ipynb`](microsoft-fabric/performance/fabric-delta-small-file-inspector/Fabric_Delta_Small_File_Inspector.ipynb)  
+**Documentation:** [`README.md`](microsoft-fabric/performance/fabric-delta-small-file-inspector/README.md)
 
 Additional tools and notebooks will be published progressively.
 
@@ -64,7 +106,7 @@ Before executing any tool:
 - Exercise additional caution with destructive operations.
 - Test changes before implementing them in production.
 
-**Important:** Some utilities perform administrative actions, including permanent deletion of resources. Always review their impact and ensure that you have the appropriate authorization.
+**Important:** Some utilities perform administrative actions, including permanent deletion of resources. Always review their impact and ensure that you have the appropriate authorization. Read-only tools can still create computational and storage-listing overhead; use optional deep scans judiciously.
 
 ## Contributions
 
