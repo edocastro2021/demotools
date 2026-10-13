@@ -27,32 +27,7 @@ The repository may include resources related to:
 - **SQL:** Data engineering patterns, query optimization, and database operations.
 - **Power BI:** Semantic models, performance considerations, and analytical solutions.
 
-## Repository Structure
 
-Suggested organization as the repository grows:
-
-```text
-data-engineering-tools/
-├── microsoft-fabric/
-│   ├── administration/
-│   │   └── Fabric_Workspace_Recycle_Bin_Cleaner.ipynb
-│   ├── performance/
-│   │   └── fabric-delta-small-file-inspector/
-│   │       ├── Fabric_Delta_Small_File_Inspector.ipynb
-│   │       └── README.md
-│   ├── capacity-monitoring/
-│   ├── data-engineering/
-│   └── automation/
-├── azure/
-├── python/
-├── pyspark/
-├── sql/
-├── power-bi/
-├── examples/
-└── README.md
-```
-
-The directory structure will evolve as new utilities and examples are added. Update the paths below if you choose a different folder structure.
 
 ## Available Tools
 
@@ -60,8 +35,8 @@ The directory structure will evolve as new utilities and examples are added. Upd
 
 | Tool | Description | Technology |
 |---|---|---|
-| [Fabric Workspace Recycle Bin Cleaner](microsoft-fabric/administration/Fabric_Workspace_Recycle_Bin_Cleaner.ipynb) | Inspect and permanently delete eligible items from a Microsoft Fabric Workspace recycle bin using REST APIs, with safeguards and dry-run support. | Python, Fabric REST API |
-| [Fabric Delta Small File Inspector](microsoft-fabric/performance/fabric-delta-small-file-inspector/Fabric_Delta_Small_File_Inspector.ipynb) | Inspect Delta tables in an attached Fabric Lakehouse, report file counts and average file sizes, flag potential small-file issues using configurable thresholds, and optionally examine active file sizes. Read-only by default. | PySpark, Delta Lake, Microsoft Fabric |
+| [Fabric Workspace Recycle Bin Cleaner] | Inspect and permanently delete eligible items from a Microsoft Fabric Workspace recycle bin using REST APIs, with safeguards and dry-run support. | Python, Fabric REST API |
+| [Fabric Delta Small File Inspector] | Inspect Delta tables in an attached Fabric Lakehouse, report file counts and average file sizes, flag potential small-file issues using configurable thresholds, and optionally examine active file sizes. Read-only by default. | PySpark, Delta Lake, Microsoft Fabric |
 
 ### Fabric Delta Small File Inspector
 
